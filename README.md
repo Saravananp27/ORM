@@ -1,56 +1,68 @@
 # Ex02 Django ORM Web Application
-## Date: 25/03/2025
-
-## AIM
+# Date: 25-3-2025
+# AIM
 To develop a Django application to store and retrieve data from a bank loan database using Object Relational Mapping(ORM).
 
-## ENTITY RELATIONSHIP DIAGRAM
-![alt text](<er diagram.jpg>)
-
-
+# ENTITY RELATIONSHIP DIAGRAM
 ## DESIGN STEPS
 
-### STEP 1:
+![Team Process Brainstorm Whiteboard in Blue Green Modern Professional Style](https://github.com/user-attachments/assets/43d3d72c-d14c-40d8-9267-33d371d08075)
+
+
+## STEP 1:
 Clone the problem from GitHub
 
-### STEP 2:
+## STEP 2:
 Create a new app in Django project
 
-### STEP 3:
+## STEP 3:
 Enter the code for admin.py and models.py
 
-### STEP 4:
+## STEP 4:
 Execute Django admin and create details for 10 books
 
-## PROGRAM
-'''
+# PROGRAM
+admin.py
+~~~
+from django.contrib import admin
+from .models import book,bookadmin
+admin.site.register(book,bookadmin)
+~~~
+
 models.py
+~~~
 from django.db import models
 from django.contrib import admin
-class Loan(models.Model):
-   loan_id=models.IntegerField(primary_key=True)
-   loan_type=models.CharField(max_length=30)
-   loan_amount=models.FloatField()
-   cust_acntno=models.IntegerField()
-   cust_name=models.CharField(max_length=50)
+class book(models.Model):
+    Book_name=models.CharField(max_length=100)
+    Author=models.CharField(max_length=100)
+    Co_author=models.CharField(max_length=100)
+    Book_code=models.IntegerField()
+    Publisher=models.CharField(max_length=100)
+    MRP=models.IntegerField()
+class bookadmin(admin.ModelAdmin):
+    list_display=("Book_name","Author","Co_author","Book_code","Publisher","MRP")
+~~~
 
-class LoanAdmin(admin.ModelAdmin):
-    list_display=('loan_id','loan_type','loan_amount','cust_acntno','cust_name')
-
-admin.py
+urls.pr
+~~~
 from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+~~~
+
+# OUTPUT
+![image](https://github.com/user-attachments/assets/3bfb222b-5855-4269-ad47-ef032dc66b54)
+
+![image](https://github.com/user-attachments/assets/7290b2d8-48bf-408c-9336-f2abe6e3c3ee)
 
 
-from.models import Loan,LoanAdmin
-admin.site.register(Loan,LoanAdmin)
+![image](https://github.com/user-attachments/assets/feaca524-3c58-47e9-a28f-6254dfd0bd3b)
 
 
 
-## OUTPUT
-
-![alt text](<Screenshot 2024-11-23 143310.png>)
-
-
-
-## RESULT
+# RESULT
 Thus the program for creating a database using ORM hass been executed successfully
